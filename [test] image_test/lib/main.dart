@@ -50,10 +50,6 @@ class _MyWidgetState extends State<MyWidget> {
     });
   }
 
-  Future print() async {
-    imagePaths.map((e) => debugPrint(e));
-  }
-
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
