@@ -37,7 +37,6 @@ class _MyWidgetState extends State<MyWidget> {
   @override
   void initState() {
     _initImages();
-    print();
     super.initState();
   }
 
