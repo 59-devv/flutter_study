@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_blog/pages/user/login_page.dart';
+import 'package:get/get.dart';
+import 'package:get/instance_manager.dart';
 
 class CustomElevatedButton extends StatelessWidget {
   final String text;
-  const CustomElevatedButton({super.key, required this.text});
+  final funPageRoute;
+  const CustomElevatedButton(
+      {super.key, required this.text, required this.funPageRoute});
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +16,7 @@ class CustomElevatedButton extends StatelessWidget {
           minimumSize: const Size(double.infinity, 50),
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))),
-      onPressed: () {},
+      onPressed: funPageRoute,
       child: Text(text),
     );
   }
