@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_blog/pages/post/home_page.dart';
+import 'package:flutter_blog/pages/user/join_page.dart';
 import 'package:flutter_blog/util/validate_util.dart';
 import 'package:get/route_manager.dart';
 
@@ -24,7 +25,13 @@ class LoginPage extends StatelessWidget {
                 style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
               ),
             ),
-            _loginForm()
+            _loginForm(),
+            TextButton(
+              onPressed: () {
+                Get.to(JoinPage());
+              },
+              child: const Text("회원가입 하러 가기"),
+            )
           ],
         ),
       ),
