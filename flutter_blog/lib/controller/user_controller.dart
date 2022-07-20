@@ -18,4 +18,9 @@ class UserController extends GetxController {
     print("jwtToken : $jwtToken");
     return token;
   }
+
+  void logout() {
+    isLogin.value = false;
+    jwtToken = null;
+  }
 }

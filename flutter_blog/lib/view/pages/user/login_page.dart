@@ -26,9 +26,10 @@ class LoginPage extends StatelessWidget {
             Container(
               alignment: Alignment.center,
               height: 200,
-              child: const Text(
-                "로그인 화면",
-                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+              child: Text(
+                "로그인 화면 ${u.isLogin}",
+                style:
+                    const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
               ),
             ),
             _loginForm(),
