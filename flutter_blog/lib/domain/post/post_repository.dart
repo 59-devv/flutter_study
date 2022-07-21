@@ -28,4 +28,17 @@ class PostRepository {
       return <Post>[];
     }
   }
+
+  Future<Post> findById(int? id) async {
+    Response response = await _postProvider.findById(id);
+    dynamic body = await response.body;
+    CMResponseDto cmResponseDto = CMResponseDto.fromJson(body);
+
+    if (cmResponseDto.code == 1) {
+      Post post = Post.fromJson(cmResponseDto.data);
+      return post;
+    } else {
+      return Post();
+    }
+  }
 }

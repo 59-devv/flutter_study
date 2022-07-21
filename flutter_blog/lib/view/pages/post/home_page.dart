@@ -37,8 +37,9 @@ class HomePage extends StatelessWidget {
           itemCount: p.posts.length,
           itemBuilder: (context, index) {
             return ListTile(
-              onTap: () {
-                Get.to(() => DetailPage(id: index),
+              onTap: () async {
+                await p.findById(p.posts[index].id);
+                Get.to(() => DetailPage(p.posts[index].id),
                     arguments: "agrument 데이터 넘기기");
               },
               title: Text("${p.posts[index].title}"),
