@@ -20,7 +20,7 @@ class UserRepository {
     CMResponseDto cmResponseDto = CMResponseDto.fromJson(body);
 
     if (cmResponseDto.code == 1) {
-      User principal = User.fromJson(body);
+      User principal = User.fromJson(cmResponseDto.data);
       String token = headers["authorization"];
       jwtToken = token;
 
