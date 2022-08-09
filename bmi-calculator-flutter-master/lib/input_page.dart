@@ -1,5 +1,7 @@
 import 'dart:ffi';
 
+import 'package:bmi_calculator/CalculatorBrain.dart';
+import 'package:bmi_calculator/results_page.dart';
 import 'package:bmi_calculator/reusable_card.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -90,7 +92,7 @@ class _InputPageState extends State<InputPage> {
                           inactiveTrackColor: Color(0xFF8D8E98),
                           activeTrackColor: Colors.white,
                           thumbColor: Color(0xFFEB1555),
-                          overlayColor: Color(0x29EB1555),
+                          overlayColor: Color(0x15EB1966),
                           thumbShape:
                               RoundSliderThumbShape(enabledThumbRadius: 15),
                           overlayShape:
@@ -140,13 +142,6 @@ class _InputPageState extends State<InputPage> {
                                   });
                                 },
                               ),
-                              // FloatingActionButton(
-                              //   backgroundColor: Color(0xFF4C4F5E),
-                              //   child: Icon(
-                              //     Icons.add,
-                              //     color: Colors.white,
-                              //   ),
-                              // ),
                               SizedBox(width: 10.0),
                               RoundIconButton(
                                 icon: FontAwesomeIcons.plus,
@@ -156,13 +151,6 @@ class _InputPageState extends State<InputPage> {
                                   });
                                 },
                               ),
-                              // FloatingActionButton(
-                              //   backgroundColor: Color(0xFF4C4F5E),
-                              //   child: Icon(
-                              //     Icons.add,
-                              //     color: Colors.white,
-                              //   ),
-                              // ),
                             ],
                           ),
                         ],
@@ -212,14 +200,50 @@ class _InputPageState extends State<InputPage> {
                 ],
               ),
             ),
-            Container(
-              color: kBottomContainerColor,
-              height: kBottomContainerHeight,
-              width: double.infinity,
-              margin: EdgeInsets.only(top: 10.0),
+            BottomButton(
+              buttonTitle: "CALCULATOR",
+              onTap: () {
+                CalculatorBrain cal = CalculatorBrain(this.height, this.weight);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => ResultsPage(
+                            bmiResult: cal.calculateBMI(),
+                            resultText: cal.getResult(),
+                            interpretation: cal.getInterpretation(),
+                          )),
+                );
+              },
             )
           ],
         ));
+  }
+}
+
+class BottomButton extends StatelessWidget {
+  final Function onTap;
+  final String buttonTitle;
+
+  const BottomButton({@required this.onTap, @required this.buttonTitle});
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        color: kBottomContainerColor,
+        height: kBottomContainerHeight,
+        width: double.infinity,
+        margin: EdgeInsets.only(top: 10.0),
+        padding: EdgeInsets.only(bottom: 20.0),
+        child: Center(
+          child: Text(
+            buttonTitle,
+            style: kLargeButtonTextStyle,
+          ),
+        ),
+      ),
+    );
   }
 }
 
