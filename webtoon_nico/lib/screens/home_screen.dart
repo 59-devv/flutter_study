@@ -10,41 +10,42 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        elevation: 2,
+        foregroundColor: Colors.green,
         backgroundColor: Colors.white,
-        appBar: AppBar(
-          elevation: 2,
-          foregroundColor: Colors.green,
-          backgroundColor: Colors.white,
-          title: const Text(
-            '오늘의 웹툰',
-            style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.w600,
-            ),
+        title: const Text(
+          '오늘의 웹툰',
+          style: TextStyle(
+            fontSize: 24,
+            fontWeight: FontWeight.w600,
           ),
         ),
-        body: FutureBuilder(
-          future: webtoons,
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              var datas = snapshot.data! as List<WebtoonModel>;
-              return Column(
-                children: [
-                  const SizedBox(
-                    height: 50,
-                  ),
-                  Expanded(
-                    child: makeList(snapshot, datas),
-                  ),
-                ],
-              );
-            } else {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            }
-          },
-        ));
+      ),
+      body: FutureBuilder(
+        future: webtoons,
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            var datas = snapshot.data! as List<WebtoonModel>;
+            return Column(
+              children: [
+                const SizedBox(
+                  height: 50,
+                ),
+                Expanded(
+                  child: makeList(snapshot, datas),
+                ),
+              ],
+            );
+          } else {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+        },
+      ),
+    );
   }
 
   ListView makeList(AsyncSnapshot<Object?> snapshot, List<WebtoonModel> datas) {
